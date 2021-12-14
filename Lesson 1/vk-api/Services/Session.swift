@@ -3,7 +3,7 @@
 //  Lesson 1
 //
 //  Created by Anton Lebedev on 11.12.2021.
-// Line added to create a new branch
+//
 
 import Foundation
 
@@ -14,6 +14,6 @@ final class Session {
     static let shared = Session()
     
     var token = ""// Stores user token in VK
-    var userId = 0 // Stores user identifier in VK
+    var userId = "" // Stores user identifier in VK
     
 }
