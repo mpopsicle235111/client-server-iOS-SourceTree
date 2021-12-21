@@ -19,6 +19,8 @@
 		DB2F373B2762B26700AF1D5B /* DetailCashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2F373A2762B26700AF1D5B /* DetailCashViewController.swift */; };
 		DB2F373D2762D8D100AF1D5B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2F373C2762D8D100AF1D5B /* ContactsViewController.swift */; };
 		DB2F3745276413A000AF1D5B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2F3744276413A000AF1D5B /* Session.swift */; };
+		DB6DDFD3277239070007DF7C /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6DDFD2277239070007DF7C /* PhotosViewController.swift */; };
+		DB6DDFD727723BF10007DF7C /* FriendsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6DDFD627723BF10007DF7C /* FriendsAPI.swift */; };
 		DBDC53022768065400332A42 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC53012768065400332A42 /* AuthViewController.swift */; };
 		DBDC5306276817F700332A42 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC5305276817F700332A42 /* FriendsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		DB2F373A2762B26700AF1D5B /* DetailCashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCashViewController.swift; sourceTree = "<group>"; };
 		DB2F373C2762D8D100AF1D5B /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		DB2F3744276413A000AF1D5B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		DB6DDFD2277239070007DF7C /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		DB6DDFD627723BF10007DF7C /* FriendsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsAPI.swift; sourceTree = "<group>"; };
 		DBDC53012768065400332A42 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DBDC5305276817F700332A42 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,16 +128,50 @@
 			isa = PBXGroup;
 			children = (
 				DB2F3744276413A000AF1D5B /* Session.swift */,
+				DB6DDFD627723BF10007DF7C /* FriendsAPI.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DB6DDFD0277238A00007DF7C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DBDC53012768065400332A42 /* AuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DB6DDFD1277238B30007DF7C /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				DBDC5305276817F700332A42 /* FriendsViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		DB6DDFD42772391A0007DF7C /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				DB6DDFD2277239070007DF7C /* PhotosViewController.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		DB6DDFD527723AD90007DF7C /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				DB0CA95F27692310003F4F45 /* GroupsViewController.swift */,
+			);
+			path = Groups;
 			sourceTree = "<group>";
 		};
 		DBDC5300276805DF00332A42 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				DBDC53012768065400332A42 /* AuthViewController.swift */,
-				DBDC5305276817F700332A42 /* FriendsViewController.swift */,
-				DB0CA95F27692310003F4F45 /* GroupsViewController.swift */,
+				DB6DDFD527723AD90007DF7C /* Groups */,
+				DB6DDFD0277238A00007DF7C /* Auth */,
+				DB6DDFD1277238B30007DF7C /* Friends */,
+				DB6DDFD42772391A0007DF7C /* Photos */,
 				DB0CA96127693153003F4F45 /* GroupsSearchViewController.swift */,
 			);
 			path = Modules;
@@ -218,8 +256,10 @@
 				DB0CA96027692310003F4F45 /* GroupsViewController.swift in Sources */,
 				DBDC53022768065400332A42 /* AuthViewController.swift in Sources */,
 				DB1320302760138F001A139B /* AppDelegate.swift in Sources */,
+				DB6DDFD3277239070007DF7C /* PhotosViewController.swift in Sources */,
 				DB1320322760138F001A139B /* SceneDelegate.swift in Sources */,
 				DB2F373D2762D8D100AF1D5B /* ContactsViewController.swift in Sources */,
+				DB6DDFD727723BF10007DF7C /* FriendsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
