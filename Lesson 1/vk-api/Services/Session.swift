@@ -14,6 +14,6 @@ final class Session {
     static let shared = Session()
     
     var token = ""// Stores user token in VK
-    var userId = 0 // Stores user identifier in VK
+    var userId = "" // Stores user identifier in VK
     
 }
