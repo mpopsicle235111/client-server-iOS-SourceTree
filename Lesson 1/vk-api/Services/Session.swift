@@ -16,4 +16,12 @@ final class Session {
     var token = ""// Stores user token in VK
     var userId = "" // Stores user identifier in VK
     
+    var expiresIn = "" //TO DO:
+                       //VK provides data in UNIX seconds,
+                       //how much time the token is still valid
+                       //A check can be implemented
+                       //how much time the token is still valid
+                       //Or maybe it nees refreshment
+                       
+           
 }
