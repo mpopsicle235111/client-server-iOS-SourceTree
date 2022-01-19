@@ -12,7 +12,7 @@ final class PhotosViewController: UITableViewController {
         
         private var photosAPI = PhotosAPI()
         
-        private var photos: [Photo] = []
+    private var photos: [Photo] = []
         
        
         
@@ -43,19 +43,41 @@ final class PhotosViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath)
 
 
-//            let photo = photos[indexPath.row]
-//
-            cell.textLabel?.text = "Kisa"
-//
-//            //We use SDWebImage Library to add picture into the cell
-//            //Need to refresh cell when receiving the picture
-//            //I think we have the reuse problem here
-//           // if let url = URL(string: photo.url) {
-//           //             cell.imageView?.sd_setImage(with: url)
-//
+            let photo = photos[indexPath.row]
+            
+            //We convert UNIX data format (seconds from 01.01.1970)
+            //to regular time format
+            let epocTime = TimeInterval(photo.date)
+            let myDate = NSDate(timeIntervalSince1970: epocTime)
+            print("UNIX Time \(photo.date)","Converted Time \(myDate)")
+
+            cell.textLabel?.text = "\(myDate)"
+            //print(photos)
+            
+            //We use SDWebImage Library to add picture into the cell
+            //Setting placeholder image solves the cell image display problem
+            if let url = URL(string: photo.sizes[0].url) {
+            cell.imageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "Heart-img")) }
+            print(photo.sizes[0].url)
+            
+            //Or, alternatively, this code can be used to refresh images in rows - REQUIRES PICTURE RESRESH EXTENSION SEEN
+            //in FRIENDSVIEWCONTROLLER
+            //Should also be noted, that this code WORKS SLOWER!
+            //if let url = URL(string: photo.sizes[0].url) {
+            //cell.imageView?.load(url: url, completion: { image  in tableView.reloadRows(at: [indexPath], with: .automatic)
+            //})
+            //}
+            
+
+            //This is used to print Realm storage link,
+            //which we can track by opening it in MongoDB
+            //Open Terminal and command "open link"
+            //let mainRealm = try! Realm ()
+            //print(mainRealm.configuration.fileURL)
             
             return cell
         }
     
    
 }
+

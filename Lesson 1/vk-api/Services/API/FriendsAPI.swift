@@ -25,7 +25,7 @@ final class FriendsAPI {
     
     /// Through completion handler it transfers closure,
     ///which receives Friend array 
-    func getFriends(completion: @escaping([Friend])->()) {
+    func getFriends(completion: @escaping([FriendDAO])->()) {
         
         let path = "/friends.get"
         let url = baseUrl + path
@@ -45,6 +45,8 @@ final class FriendsAPI {
            // print(response.result)
             
             print(response.data?.prettyJSON)
+            //Then put into quicktype.io
+            
             //We unpack optional binary here
             guard let jsonData = response.data else { return }
             
@@ -56,10 +58,11 @@ final class FriendsAPI {
             
             //So we need a try/catch block here:
             do {
-                let friendsContainer  = try  JSONDecoder().decode(FriendsContainer.self, from: jsonData)
+                let friendsContainer  = try JSONDecoder().decode(FriendsContainer.self, from: jsonData)
                 let friends = friendsContainer.response.items 
-                
+            
                 completion(friends)
+            
             } catch {
                 print(error)
             }
@@ -67,10 +70,10 @@ final class FriendsAPI {
             
             
                 
-                    
-                
+         //This was used for temporary plug
+        //completion([Friend()])
         }
         
-    //    completion([Friend()])
+        
     
 }
