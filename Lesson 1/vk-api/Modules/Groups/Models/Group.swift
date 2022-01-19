@@ -6,34 +6,74 @@
 //
 
 import Foundation
+import RealmSwift
 
-//MARK: We have taken this JSON responce directly here from output
-/*"is_member" : 0,
-"id" : 78045913,
-"photo_100" : "https:\/\/sun9-88.userapi.com\/s\/v1\/if2\/tuwJ9zqJHr4A3snNWp56gRYUJvkxyCSC59dD72-TKonM3sqYWKCDm2yS7Vsk0gVTWpJwrX9DWskP4K7HdJgEC0wi.jpg?size=100x100&quality=96&crop=41,75,287,287&ava=1",
-"is_advertiser" : 0,
-"is_admin" : 0,
-"photo_50" : "https:\/\/sun9-88.userapi.com\/s\/v1\/if2\/RukF8FE5GDr72lBQ18sRWLKBfOO1xNyu1_bRsi-oO8FQMWRTaOW_rlesdkJd0vNLXVXxYfJnRvqQtcQRhLrCosP_.jpg?size=50x50&quality=96&crop=41,75,287,287&ava=1",
-"photo_200" : "https:\/\/sun9-88.userapi.com\/s\/v1\/if2\/uZxNsV1JGt2CXbkqug-kQHKFPaOJWID1K0HLMdESjCr8ll5C5nt-2A3qQK5A6PmIl2xsXm5SRic3ninz-Xz0_I_Y.jpg?size=200x200&quality=96&crop=41,75,287,287&ava=1",
-"type" : "group",
-"screen_name" : "davydov_official",
-"name" : "Константин Давыдов | ОФИЦИАЛЬНАЯ ГРУППА АКТЕРА",
-"is_closed" : 0
-    
+
+// MARK: - GroupContainer
+struct GroupsContainer: Codable {
+    let response: GroupsResponse?
+    let name: String?
+    let founded: Int?
+    let members: [String]?
 }
-*/
+
+// MARK: - Response
+struct GroupsResponse: Codable {
+    let count: Int
+    
+    //For Internet:
+    //let items: [Group]
+    
+    //For Realm:
+    let items: [GroupDAO]
+}
+
+// MARK: - Item
+struct Group: Codable {
+    let isMember, id: Int
+    let photo100: String
+    let isAdvertiser, isAdmin: Int
+    let photo50, photo200: String
+    let type: TypeEnum
+    let screenName, name: String
+    let isClosed: Int
+
+    enum CodingKeys: String, CodingKey {
+        case isMember = "is_member"
+        case id
+        case photo100 = "photo_100"
+        case isAdvertiser = "is_advertiser"
+        case isAdmin = "is_admin"
+        case photo50 = "photo_50"
+        case photo200 = "photo_200"
+        case type
+        case screenName = "screen_name"
+        case name
+        case isClosed = "is_closed"
+    }
+}
+
+enum TypeEnum: String, Codable {
+    case group = "group"
+    case page = "page"
+}
+
+
 
 //MARK: THIS IS MANUAL PARSING
 //We take necessary values from the list above
-struct Group {
-    var id: Int = 0
-    var name: String = ""
-    var photo100: String = ""
-    
-    init(item: [String: Any]) {
-        self.id = item["id"] as! Int
-        self.name = item["name"] as! String
-        self.photo100 = item["photo_100"] as! String
+/// DAO = Data Access Object for database (opposite to DTO, which is for Internet)
+
+//class GroupDAO: Object, Codable {
+//    //Dymanic var can be changed in realtime
+//    @objc dynamic var id: Int = 0
+//    @objc dynamic var name: String = ""
+//    @objc dynamic var photo100: String = ""
+//
+//    init(item: [String: Any]) {
+//        self.id = item["id"] as! Int
+//        self.name = item["name"] as! String
+//        self.photo100 = item["photo_100"] as! String
         
-    }
-}
+//    }
+//}
