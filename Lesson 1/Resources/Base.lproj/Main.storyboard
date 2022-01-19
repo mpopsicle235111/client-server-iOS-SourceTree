@@ -47,7 +47,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="jgU-AC-uD9">
             <objects>
-                <tabBarController id="kWa-Vo-gnO" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MyTabBarController" id="kWa-Vo-gnO" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="U04-VI-D76"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C4v-sD-NgX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -96,7 +96,7 @@
         <!--Groups-->
         <scene sceneID="FBb-ye-7uz">
             <objects>
-                <tableViewController id="fPB-Yb-rjI" customClass="GroupsViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupsViewController" title="Groups" id="fPB-Yb-rjI" customClass="GroupsViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZYT-6r-3RK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,10 +117,142 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Groups" id="vcH-NP-P1h"/>
+                    <navigationItem key="navigationItem" title="Title" id="Oh7-En-Nqc">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="bAJ-N5-1Vu"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFT-ht-pC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3263" y="-1677"/>
+            <point key="canvasLocation" x="3276" y="-1677"/>
+        </scene>
+        <!--Firebase-->
+        <scene sceneID="q6v-Ne-WdH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NjN-GT-cY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="FirebaseLoginViewController" title="Firebase" id="VCw-GZ-2IS" customClass="FirebaseLoginViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PtU-rt-gpw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="test@test.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3T9-bh-bol">
+                                <rect key="frame" x="126.5" y="81" width="122" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="12345678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kji-Vl-DTX">
+                                <rect key="frame" x="140.5" y="159" width="94" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ7-oP-y6p">
+                                <rect key="frame" x="115" y="248" width="145" height="29"/>
+                                <color key="backgroundColor" red="0.85834139585494995" green="0.96018511056900024" blue="0.95754879713058472" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Sign In (Authorization)"/>
+                                <connections>
+                                    <action selector="signInAction:" destination="VCw-GZ-2IS" eventType="touchUpInside" id="uWj-2g-5WO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwo-l2-hg7">
+                                <rect key="frame" x="116" y="318" width="143" height="29"/>
+                                <color key="backgroundColor" red="0.85834139585494995" green="0.96018511056900024" blue="0.95754879713058472" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Sign Up (Registration)"/>
+                                <connections>
+                                    <action selector="signUpAction:" destination="VCw-GZ-2IS" eventType="touchUpInside" id="BDa-R0-BSW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsa-aA-qWE">
+                                <rect key="frame" x="142" y="390" width="91" height="34"/>
+                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <state key="normal" title="GET BACK"/>
+                                <connections>
+                                    <action selector="getBackToGroups:" destination="VCw-GZ-2IS" eventType="touchUpInside" id="7ND-6J-sKH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="A3f-aJ-m64"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vwo-l2-hg7" firstAttribute="top" secondItem="hJ7-oP-y6p" secondAttribute="bottom" constant="41" id="APw-YQ-iCK"/>
+                            <constraint firstItem="vwo-l2-hg7" firstAttribute="centerX" secondItem="PtU-rt-gpw" secondAttribute="centerX" id="KWT-Wa-pdN"/>
+                            <constraint firstItem="3T9-bh-bol" firstAttribute="top" secondItem="A3f-aJ-m64" secondAttribute="top" constant="81" id="O9k-C2-5sX"/>
+                            <constraint firstItem="zsa-aA-qWE" firstAttribute="top" secondItem="vwo-l2-hg7" secondAttribute="bottom" constant="43" id="Snb-WC-v4h"/>
+                            <constraint firstItem="hJ7-oP-y6p" firstAttribute="centerX" secondItem="PtU-rt-gpw" secondAttribute="centerX" id="ZaC-OZ-xZU"/>
+                            <constraint firstItem="hJ7-oP-y6p" firstAttribute="top" secondItem="kji-Vl-DTX" secondAttribute="bottom" constant="55" id="bQ9-sU-za4"/>
+                            <constraint firstItem="3T9-bh-bol" firstAttribute="centerX" secondItem="PtU-rt-gpw" secondAttribute="centerX" id="dyi-Lg-6gj"/>
+                            <constraint firstItem="zsa-aA-qWE" firstAttribute="centerX" secondItem="PtU-rt-gpw" secondAttribute="centerX" id="hcF-Bb-QxA"/>
+                            <constraint firstItem="kji-Vl-DTX" firstAttribute="top" secondItem="3T9-bh-bol" secondAttribute="bottom" constant="44" id="leT-Af-pqe"/>
+                            <constraint firstItem="kji-Vl-DTX" firstAttribute="centerX" secondItem="PtU-rt-gpw" secondAttribute="centerX" id="zVo-n6-Aew"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="C8W-X2-CrX"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="3T9-bh-bol" id="5wP-Po-7U8"/>
+                        <outlet property="passwordTextField" destination="kji-Vl-DTX" id="Jbg-an-bzt"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="3998" y="-1677"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="J4M-Gi-kRa">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="oGB-4T-HGi" customClass="HomeViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XFh-Hk-6Mn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVI-qG-trD">
+                                <rect key="frame" x="109" y="87" width="157" height="28"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
+                                <state key="normal" title="Sign Out (Exit Account)">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOutAction:" destination="oGB-4T-HGi" eventType="touchUpInside" id="NIg-uH-Vvs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOq-zV-Zmx">
+                                <rect key="frame" x="112" y="169" width="151" height="28"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
+                                <state key="normal" title="Add Group To Firebase">
+                                    <color key="titleColor" red="0.85834139585494995" green="0.96018511056900024" blue="0.95754879713058472" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addGroupAction:" destination="oGB-4T-HGi" eventType="touchUpInside" id="Scf-TE-7Pd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="teO-24-Pk1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pVI-qG-trD" firstAttribute="centerX" secondItem="XFh-Hk-6Mn" secondAttribute="centerX" id="09m-10-Ke2"/>
+                            <constraint firstItem="JOq-zV-Zmx" firstAttribute="centerX" secondItem="XFh-Hk-6Mn" secondAttribute="centerX" id="1OB-4L-Z3S"/>
+                            <constraint firstItem="JOq-zV-Zmx" firstAttribute="top" secondItem="pVI-qG-trD" secondAttribute="bottom" constant="54" id="5xf-ic-9ml"/>
+                            <constraint firstItem="pVI-qG-trD" firstAttribute="top" secondItem="teO-24-Pk1" secondAttribute="top" constant="87" id="7RI-6T-oWg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y9R-HV-w2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4668" y="-1677"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VTC-NH-hH2">
+            <objects>
+                <navigationController id="C0I-Wi-SEU" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oyF-uZ-77t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5NR-VC-J7A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1548" y="-1289"/>
         </scene>
         <!--Friends-->
         <scene sceneID="hSt-wS-YpX">
@@ -295,8 +427,14 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
