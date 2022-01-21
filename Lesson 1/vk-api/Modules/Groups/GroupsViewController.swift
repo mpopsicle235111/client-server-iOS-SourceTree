@@ -34,7 +34,7 @@ final class GroupsViewController: UITableViewController {
 
 
        //The controller is holding GroupsAPI
-       //Inside GroupsAPI the closure catchse controller through self
+       //Inside GroupsAPI the closure catches controller through self
        //So we need weak self to avoid retain cycle
         groupsAPI.getGroups { [weak self] groups in
             //But inside we make groups strong again)))
@@ -127,7 +127,22 @@ final class GroupsViewController: UITableViewController {
         return cell
         
     }
+    
+    //If the group is selected - this triggers a switch to FirebaseLogin
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showFirebaseLoginViewController()
+    }
      
+    private func showFirebaseLoginViewController() {
+        //If there is such controller, we wand to unload it
+        guard let vc1 = storyboard?.instantiateViewController(withIdentifier: "FirebaseLoginViewController") else { return }
+        //All controllers are contained in window
+        //To show controller we add it to the window
+        guard let window = self.view.window else { return }
+        window.rootViewController = vc1
+    }
+    
+    
 }
 
 
