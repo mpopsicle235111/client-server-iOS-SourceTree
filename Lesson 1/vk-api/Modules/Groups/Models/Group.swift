@@ -17,6 +17,7 @@ struct GroupsContainer: Codable {
     let members: [String]?
 }
 
+
 // MARK: - Response
 struct GroupsResponse: Codable {
     let count: Int
@@ -25,10 +26,17 @@ struct GroupsResponse: Codable {
     //let items: [Group]
     
     //For Realm:
-    let items: [GroupDAO]
+    //let items: [GroupDAO]
+    
+    //For Firebase
+    //let items: [GroupFirebase]
+    
+
 }
 
+
 // MARK: - Item
+//For Internet
 struct Group: Codable {
     let isMember, id: Int
     let photo100: String
@@ -52,6 +60,8 @@ struct Group: Codable {
         case isClosed = "is_closed"
     }
 }
+
+
 
 enum TypeEnum: String, Codable {
     case group = "group"
