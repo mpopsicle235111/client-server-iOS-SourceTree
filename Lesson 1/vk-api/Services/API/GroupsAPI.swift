@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+
 /// This is a temporary plug
 //struct Group {
 //    var name = "Britney fans"
@@ -27,7 +28,10 @@ final class GroupsAPI {
     //func getGroups(completion: @escaping([Group])->()) {
     
     //This is for Realm
-    func getGroups(completion: @escaping([GroupDAO])->()) {
+    //func getGroups(completion: @escaping([GroupDAO])->()) {
+        
+    //This is for Firebase
+    func getGroups(completion: @escaping([GroupFirebase])->()) {
         
        let path = "/groups.get"
        let url = baseUrl + path
@@ -51,11 +55,12 @@ final class GroupsAPI {
         
         guard let jsonData = response.data else { return }
         
-        let groupsContainer = try? JSONDecoder().decode(GroupsContainer.self, from: jsonData)
+        let groupsFirebaseContainer = try? JSONDecoder().decode(GroupsFirebaseContainer.self, from: jsonData)
         
-        guard let groups = groupsContainer?.response?.items else { return }
+        guard let groups = groupsFirebaseContainer?.response?.items else { return }
         
         completion(groups)
+        print(groups)
     }
            
             
