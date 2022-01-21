@@ -69,14 +69,14 @@ class HomeViewController: UIViewController {
     //"Add group to Firebase" button
     @IBAction func addGroupAction(_ sender: Any) {
         //First we create a container
-        let group = GroupFirebase(name: "NESTEA", photo100: "https://sun9-27.userapi.com/s/v1/if1/SZL9inn5MKPaUY78wuw_4t7D84HVV0m_6Vmw94Gb1LNlQ-dwddWbioBkiTl8YbJydcUYVtAE.jpg?size=100x100&quality=96&crop=0,0,500,500&ava=1")
+        let group = GroupFirebase(name: "NESTEA", photo100: "https://sun9-27.userapi.com/s/v1/if1/SZL9inn5MKPaUY78wuw_4t7D84HVV0m_6Vmw94Gb1LNlQ-dwddWbioBkiTl8YbJydcUYVtAE.jpg?size=100x100&quality=96&crop=0,0,500,500&ava=1", id: 33)
         //Then we make it ready to save
         let groupContainerRef = self.ref.child(group.name)
         //Then we load data into the reference
         groupContainerRef.setValue(group.toAnyObject())
        
         //Go to console.firebase.google.com to check, what is uploaded
-        //to firebase
+        //to Firebase
     }
     
     

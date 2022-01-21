@@ -168,6 +168,7 @@
 				DB2F3744276413A000AF1D5B /* Session.swift */,
 				DB9EEB5F277F384400CE6A41 /* FriendDB.swift */,
 				DB9EEB61277F575500CE6A41 /* GroupDB.swift */,
+				DBF113302797A22600C13C5A /* GroupFirebase.swift */,
 				DB74ED582776163000B8AF47 /* API */,
 			);
 			path = Services;
@@ -206,7 +207,6 @@
 				DB0CA95F27692310003F4F45 /* GroupsViewController.swift */,
 				DBF1132A279635CD00C13C5A /* FirebaseLoginViewController.swift */,
 				DBF1132C279635FA00C13C5A /* HomeViewController.swift */,
-				DBF113302797A22600C13C5A /* GroupFirebase.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
