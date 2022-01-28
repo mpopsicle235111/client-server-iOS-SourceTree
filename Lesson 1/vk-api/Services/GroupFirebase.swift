@@ -9,6 +9,10 @@
 import Foundation
 import Firebase
 
+//This is a reference to container within Firebase
+//Which is a singletone
+let ref = Database.database().reference(withPath: "Groups")
+
 // MARK: - GroupContainer
 struct GroupsFirebaseContainer: Codable {
     let response: GroupsFirebaseResponse?
@@ -53,7 +57,7 @@ struct GroupFirebase: Codable {
     //To create object in Firebase
     init(name: String, photo100: String, id: Int) {
         // 2
-        self.name = name
+        self.name = name + "From Firebase "
         self.photo100 = photo100
         //self.isAdvertiser = isAdvertiser
         //self.isMember = isMember
@@ -88,7 +92,7 @@ struct GroupFirebase: Codable {
     func toAnyObject() -> [String: Any] {
         // 4
         return [
-            "name": name,
+            "name": "From Firebase " + name,
             "photo100": photo100,
             "id": id
         ]
@@ -111,3 +115,27 @@ func saveToFirebase(_ items: [GroupFirebase]) {
     counter = counter + 1
     }
 }
+
+//func fetchFromFirebase(_ items: [GroupFirebase]) {
+//    
+//    //This is how we get data back from Firebase
+//    //If something happens in Firebase, we react to it
+//    ref.observe(.value, with: { snapshot in
+//        print(snapshot.value as Any)
+//        
+//        var groups: [GroupFirebase] = []
+//        //We check each child in snapshot
+//        //and add them to groups dictionary
+//        for child in snapshot.children {
+//            
+//            if let snapshot = child as? DataSnapshot, let group = GroupFirebase(snapshot: snapshot) {
+//                groups.append(group)
+//            }
+//        }
+//        //We transfer our local groups to external controller
+//        //self.groups = groups
+//        print("Output from Firebase")
+//        print(groups)
+//        //let _ = self.groups.map { print($0.name, $0.photo100)}
+//    })
+//}
