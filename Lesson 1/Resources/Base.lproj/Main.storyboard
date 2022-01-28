@@ -58,13 +58,14 @@
                         <segue destination="NN3-I3-CRz" kind="relationship" relationship="viewControllers" id="58A-eK-SFu"/>
                         <segue destination="j9c-ZK-4oS" kind="relationship" relationship="viewControllers" id="dJ9-WG-SLT"/>
                         <segue destination="fPB-Yb-rjI" kind="relationship" relationship="viewControllers" id="i1k-Fh-hB3"/>
+                        <segue destination="rpX-HO-FMc" kind="relationship" relationship="viewControllers" destinationCreationSelector="newsSegue" id="8sm-Xj-GlI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWJ-Yc-j0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2492" y="-617"/>
         </scene>
-        <!--Photos-->
+        <!--Photos (Internet)-->
         <scene sceneID="YgK-0W-t4c">
             <objects>
                 <tableViewController id="j9c-ZK-4oS" customClass="PhotosViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -87,11 +88,48 @@
                             <outlet property="delegate" destination="j9c-ZK-4oS" id="LHo-nt-SNL"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Photos" id="JbA-tf-T1g"/>
+                    <tabBarItem key="tabBarItem" title="Photos (Internet)" image="photo.on.rectangle" catalog="system" id="JbA-tf-T1g"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54b-tQ-uNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3276" y="-296"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="P57-lL-V3I">
+            <objects>
+                <viewController storyboardIdentifier="News" title="News" id="rpX-HO-FMc" customClass="NewsViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gop-5a-Flk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="450" estimatedRowHeight="-1" sectionHeaderHeight="35" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ozD-8R-lFX">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WGq-ay-Hpj">
+                                        <rect key="frame" x="0.0" y="49.5" width="375" height="450"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WGq-ay-Hpj" id="JGN-WW-MuM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W7Q-kt-hCe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="News (Stub)" image="tv.and.mediabox" catalog="system" id="e8k-qf-XHX"/>
+                    <connections>
+                        <outlet property="newsTableView" destination="ozD-8R-lFX" id="hiH-Go-qlm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6B-MQ-har" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3276" y="461"/>
         </scene>
         <!--Groups-->
         <scene sceneID="FBb-ye-7uz">
@@ -116,7 +154,7 @@
                             <outlet property="delegate" destination="fPB-Yb-rjI" id="aYS-KZ-e9G"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Groups" id="vcH-NP-P1h"/>
+                    <tabBarItem key="tabBarItem" title="Groups (Firebase)" image="person.3" catalog="system" id="vcH-NP-P1h"/>
                     <navigationItem key="navigationItem" title="Title" id="Oh7-En-Nqc">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="bAJ-N5-1Vu"/>
                     </navigationItem>
@@ -254,7 +292,7 @@
             </objects>
             <point key="canvasLocation" x="1548" y="-1289"/>
         </scene>
-        <!--Friends-->
+        <!--Friends (Realm)-->
         <scene sceneID="hSt-wS-YpX">
             <objects>
                 <tableViewController id="NN3-I3-CRz" customClass="FriendsViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -277,7 +315,7 @@
                             <outlet property="delegate" destination="NN3-I3-CRz" id="QLC-7b-LRb"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Friends" id="4ZR-g0-Z8R"/>
+                    <tabBarItem key="tabBarItem" title="Friends (Realm)" image="person.2.fill" catalog="system" id="4ZR-g0-Z8R"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFw-Rb-lZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -427,6 +465,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
+        <image name="tv.and.mediabox" catalog="system" width="128" height="89"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
