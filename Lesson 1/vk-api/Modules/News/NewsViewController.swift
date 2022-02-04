@@ -9,7 +9,8 @@ import UIKit
 
 class NewsViewController: UIViewController {
   
-    
+    private var newsFeedAPI = NewsFeedAPI()
+    private var news: [NewsItem] = []
         
     @IBOutlet weak var newsTableView: UITableView!
     
@@ -19,6 +20,18 @@ class NewsViewController: UIViewController {
             super.viewDidLoad()
             
             config()
+            
+            //Let us register some system cell
+           // tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NewsCustomTableViewCell")
+            
+            //Weak self to avoid retain cycle
+            newsFeedAPI.getNews{ [weak self] news in
+                guard let self = self else { return }
+                
+                self.news = news
+                //self.tableView.reloadData()
+            
+            }
             
             
             

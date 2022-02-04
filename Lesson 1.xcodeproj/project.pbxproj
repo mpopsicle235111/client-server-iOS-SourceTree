@@ -15,6 +15,9 @@
 		DB1320372760138F001A139B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1320352760138F001A139B /* Main.storyboard */; };
 		DB13203927601397001A139B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB13203827601397001A139B /* Assets.xcassets */; };
 		DB13203C27601397001A139B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB13203A27601397001A139B /* LaunchScreen.storyboard */; };
+		DB27344827AC9FCC00ADA0DF /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27344727AC9FCC00ADA0DF /* NewsFeedTableViewController.swift */; };
+		DB27344A27AD4C7B00ADA0DF /* NewsFeedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27344927AD4C7B00ADA0DF /* NewsFeedAPI.swift */; };
+		DB27344D27AD4E3900ADA0DF /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27344C27AD4E3900ADA0DF /* News.swift */; };
 		DB2F37372762A76600AF1D5B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2F37362762A76600AF1D5B /* Account.swift */; };
 		DB2F373B2762B26700AF1D5B /* DetailCashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2F373A2762B26700AF1D5B /* DetailCashViewController.swift */; };
 		DB2F373D2762D8D100AF1D5B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2F373C2762D8D100AF1D5B /* ContactsViewController.swift */; };
@@ -57,6 +60,9 @@
 		DB13203827601397001A139B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB13203B27601397001A139B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB13203D27601397001A139B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB27344727AC9FCC00ADA0DF /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
+		DB27344927AD4C7B00ADA0DF /* NewsFeedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedAPI.swift; sourceTree = "<group>"; };
+		DB27344C27AD4E3900ADA0DF /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		DB2F37362762A76600AF1D5B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		DB2F373A2762B26700AF1D5B /* DetailCashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCashViewController.swift; sourceTree = "<group>"; };
 		DB2F373C2762D8D100AF1D5B /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +132,14 @@
 			path = "Lesson 1";
 			sourceTree = "<group>";
 		};
+		DB27344B27AD4DE700ADA0DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB27344C27AD4E3900ADA0DF /* News.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DB2F37332762A57200AF1D5B /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,7 +197,9 @@
 		DB57D23B27A1A46700E092E7 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				DB27344B27AD4DE700ADA0DF /* Models */,
 				DB57D24027A20F1E00E092E7 /* NewsViewController.swift */,
+				DB27344727AC9FCC00ADA0DF /* NewsFeedTableViewController.swift */,
 				DB57D23C27A1A4CA00E092E7 /* NewsCustomTableViewCell.swift */,
 				DB57D23D27A1A4CB00E092E7 /* NewsCustomTableViewCell.xib */,
 			);
@@ -263,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				DB74ED532775E2F600B8AF47 /* GroupsAPI.swift */,
+				DB27344927AD4C7B00ADA0DF /* NewsFeedAPI.swift */,
 				DB6DDFD627723BF10007DF7C /* FriendsAPI.swift */,
 				DB6DDFF5277535670007DF7C /* PhotosAPI.swift */,
 			);
@@ -372,6 +389,7 @@
 				DB2F3745276413A000AF1D5B /* Session.swift in Sources */,
 				DB6DDFF6277535670007DF7C /* PhotosAPI.swift in Sources */,
 				DBDC5306276817F700332A42 /* FriendsViewController.swift in Sources */,
+				DB27344A27AD4C7B00ADA0DF /* NewsFeedAPI.swift in Sources */,
 				DBF1132B279635CD00C13C5A /* FirebaseLoginViewController.swift in Sources */,
 				DB1320342760138F001A139B /* SendCashViewController.swift in Sources */,
 				DB6DDFEE277517470007DF7C /* Data+PrettyJSON.swift in Sources */,
@@ -389,11 +407,13 @@
 				DB6DDFD3277239070007DF7C /* PhotosViewController.swift in Sources */,
 				DB1320322760138F001A139B /* SceneDelegate.swift in Sources */,
 				DB57D24127A20F1E00E092E7 /* NewsViewController.swift in Sources */,
+				DB27344D27AD4E3900ADA0DF /* News.swift in Sources */,
 				DB6DDFF1277519F40007DF7C /* Friend.swift in Sources */,
 				DB57D23E27A1A4CB00E092E7 /* NewsCustomTableViewCell.swift in Sources */,
 				DBF113312797A22600C13C5A /* GroupFirebase.swift in Sources */,
 				DB2F373D2762D8D100AF1D5B /* ContactsViewController.swift in Sources */,
 				DB6DDFD727723BF10007DF7C /* FriendsAPI.swift in Sources */,
+				DB27344827AC9FCC00ADA0DF /* NewsFeedTableViewController.swift in Sources */,
 				DB9EEB60277F384400CE6A41 /* FriendDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
