@@ -58,7 +58,7 @@ final class PhotosAPI {
            let photosContainer = try? JSONDecoder().decode(PhotosContainer.self, from: jsonData)
    
         
-        guard let photos = photosContainer?.response?.items else { return }
+           guard let photos = photosContainer?.response?.items else { return }
         
            completion(photos)
         
