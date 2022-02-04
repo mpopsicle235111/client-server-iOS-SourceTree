@@ -12,7 +12,7 @@ final class PhotosViewController: UITableViewController {
         
         private var photosAPI = PhotosAPI()
         
-    private var photos: [Photo] = []
+        private var photos: [Photo] = []
         
        
         
