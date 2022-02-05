@@ -7,109 +7,136 @@
 
 import UIKit
 
-enum PostCellType: Int, CaseIterable {
-    case author = 0
-    case text
-    case photo
-    case likeCount
-}
+ class NewsFeedTableViewController: UITableViewController {
+     private var sections = [NewsSection]()
+     private var newsFeedAPI = NewsFeedAPI()
+     private var news: [NewsItem] = []
 
-class NewsFeedTableViewController: UITableViewController {
+     override func viewDidLoad() {
+         super.viewDidLoad()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-     //   setViews()
-    }
+         tableView.delegate = self
+         tableView.dataSource = self
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return NewsFeed.list.count
-//    }
+         //registerNib()
+         loadData()
+        
+        //Weak self to avoid retain cycle
+        newsFeedAPI.getNews{ [weak self] news in
+            guard let self = self else { return }
+            
+            self.news = news
+            //self.tableView.reloadData()
+     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return PostCellType.allCases.count
-    }
+     func loadData() {
+         for item in demoNews {
+             var dataRow = [NewsDataRow]()
+             if !item.text.isEmpty {
+                 dataRow.append(NewsDataRow(type: .text, text: item.text))
+             }
+             if !item.photo.isEmpty {
+                 dataRow.append(NewsDataRow(type: .photo, photo: item.photo))
+             }
 
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        let item = NewsItem.list[indexPath.section]
-//        let postCellType = PostCellType(rawValue: indexPath.row)
-//        
-//        switch postCellType {
-//        case .author:
-//                let cell = tableView.dequeueReusableCell(withIdentifier: AuthorOfFeedTableViewCell.reuseId, for: indexPath) as! AuthorOfFeedTableViewCell
-//                cell.config(authorName: item.groupName, authorPhoto: item.groupIcon, dateOfPublication: Date())
-//                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-//                return cell
-//            
-//        case .text:
-//                let cell = tableView.dequeueReusableCell(withIdentifier: TextOfFeedTableViewCell.reuseId, for: indexPath) as! TextOfFeedTableViewCell
-//                cell.config(textOfFeed: item.newsText)
-//                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-//                return cell
-//            
-//        case .photo:
-//                let cell = tableView.dequeueReusableCell(withIdentifier: PhotoOfFeedTableViewCell.reuseId) as! PhotoOfFeedTableViewCell
-//                cell.config(photoOfFeed: item.newsImage)
-//                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-//                return cell
-//            
-//        case .likeCount:
-//                let cell = tableView.dequeueReusableCell(withIdentifier: LikeCountTableViewCell.reuseId) as! LikeCountTableViewCell
-//                cell.config(likeCount: Int.random(in: 0...100), commentCount: Int.random(in: 0...100), shareCount: Int.random(in: 0...100), viewsCount: Int.random(in: 0...100))
-//               
-//                return cell
-//        default:
-//            return UITableViewCell()
-//    }
+             sections.append(NewsSection(
+                 postId: item.postId,
+                 date: item.date,
+                 author: item.author,
+                 comments: item.comments,
+                 likes: item.likes,
+                 views: item.views,
+                 reposts: item.repost,
+                 data: dataRow
+             )
+             )
+         }
+     }
     
-}
-    
+//    private func registerNib() {
+//             tableView.register(
+//                 SectionHeader.nib,
+//                 forHeaderFooterViewReuseIdentifier: "Header"
+//             )
+//
+//             tableView.register(
+//                 SectionFooter.nib,
+//                 forHeaderFooterViewReuseIdentifier: "Footer"
+//             )
+//
+//             let nibText = UINib(nibName: "TextViewCell", bundle: nil)
+//             tableView.register(nibText, forCellReuseIdentifier: "TextViewCell")
+//
+//             let nibPhoto = UINib(nibName: "PhotoViewCell", bundle: nil)
+//             tableView.register(nibPhoto, forCellReuseIdentifier: "PhotoViewCell")
+         }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+ }
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+ extension NewsFeedTableViewController {
+     // MARK: - Table view data source
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     override func numberOfSections(in _: UITableView) -> Int {
+         sections.count
+     }
 
-    }
-    */
+     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+         sections[section].data.count
+     }
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let section = sections[indexPath.section]
+         let sectionData = section.data[indexPath.row]
 
-    /*
-    // MARK: - Navigation
+         switch sectionData.type {
+         case .text:
+             let cell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell", for: indexPath) as! TextViewCell
+             cell.postTextLabel.text = sectionData.text
+             return cell
+         case .photo:
+             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoViewCell", for: indexPath) as! PhotoViewCell
+             cell.postPhotoImageView.image = UIImage(named: sectionData.photo ?? "News1-img")
+             return cell
+         }
+     }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
+         return UITableView.automaticDimension
+     }
 
-//}
+     override func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
+         return UITableView.automaticDimension
+     }
+
+     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as? SectionHeader
+         else { return nil }
+
+         let sectionData = sections[section]
+         view.authorImageView.image = UIImage(named: sectionData.authorPhoto)
+         view.authorNameLabel.text = sectionData.author
+         view.datePostLabel.text = sectionData.date
+
+         return view
+     }
+
+     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Footer") as? SectionFooter
+         else { return nil }
+
+         let sectionData = sections[section]
+         view.likeLabel.text = String(sectionData.likes)
+         view.commentLabel.text = String(sectionData.comments)
+         view.repostLabel.text = String(sectionData.reposts)
+         view.viewLabel.text = String(sectionData.views)
+         return view
+     }
+
+     override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
+         return UITableView.automaticDimension
+     }
+
+     override func tableView(_: UITableView, estimatedHeightForHeaderInSection _: Int) -> CGFloat {
+         return 100.0
+     }
+ }

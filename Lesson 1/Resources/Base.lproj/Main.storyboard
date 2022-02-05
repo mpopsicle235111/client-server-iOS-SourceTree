@@ -58,7 +58,7 @@
                         <segue destination="NN3-I3-CRz" kind="relationship" relationship="viewControllers" id="58A-eK-SFu"/>
                         <segue destination="j9c-ZK-4oS" kind="relationship" relationship="viewControllers" id="dJ9-WG-SLT"/>
                         <segue destination="fPB-Yb-rjI" kind="relationship" relationship="viewControllers" id="i1k-Fh-hB3"/>
-                        <segue destination="rpX-HO-FMc" kind="relationship" relationship="viewControllers" destinationCreationSelector="newsSegue" id="8sm-Xj-GlI"/>
+                        <segue destination="N4Z-2c-FhF" kind="relationship" relationship="viewControllers" id="Zsd-md-Sfi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWJ-Yc-j0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -93,6 +93,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54b-tQ-uNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3276" y="-296"/>
+        </scene>
+        <!--News (Stub)-->
+        <scene sceneID="IUb-l7-dTZ">
+            <objects>
+                <tableViewController title="News (Stub)" id="N4Z-2c-FhF" customClass="NewsFeedTableViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lia-UO-hbr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Header" id="1G4-OJ-uoH">
+                                <rect key="frame" x="0.0" y="24.5" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1G4-OJ-uoH" id="hO2-yj-Bb3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoViewCell" rowHeight="110" id="Dtf-O6-Iod" customClass="PhotoViewCell" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="68" width="375" height="110"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PhotoViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dtf-O6-Iod" id="vPu-bg-hAD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="postPhotoImageView" image="News1-img" translatesAutoresizingMaskIntoConstraints="NO" id="XFh-WX-r4g">
+                                            <rect key="frame" x="67" y="0.0" width="222" height="110"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="postPhotoImageView" destination="XFh-WX-r4g" id="C1D-Ig-ffL"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextViewCell" id="3kI-Lu-01u" customClass="TextViewCell" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="178" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3kI-Lu-01u" id="QQ3-OH-Y2M">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2J-eP-hMf">
+                                            <rect key="frame" x="114" y="0.0" width="157" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="postTextLabel" destination="f2J-eP-hMf" id="L9o-q1-Mw2"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Footer" id="RZ5-9u-nh3">
+                                <rect key="frame" x="0.0" y="221.5" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RZ5-9u-nh3" id="6jh-eG-cEa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="N4Z-2c-FhF" id="LLj-yJ-RMd"/>
+                            <outlet property="delegate" destination="N4Z-2c-FhF" id="mn5-sE-3ey"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="News (Stub)" image="newspaper" catalog="system" id="uhs-5I-Hpb"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Yp-P9-Zr4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2541.5999999999999" y="205.54722638680661"/>
         </scene>
         <!--News-->
         <scene sceneID="P57-lL-V3I">
@@ -465,6 +539,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="News1-img" width="400" height="300"/>
+        <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
