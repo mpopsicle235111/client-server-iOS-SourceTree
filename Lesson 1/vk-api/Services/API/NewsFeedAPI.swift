@@ -30,11 +30,24 @@ final class NewsFeedAPI {
        let path = "/newsfeed.get"
        let url = baseUrl + path
    
-       //items is a dictionary
+       //NOTE: IN ORDER TO HAVE ACCESS TO NEWSFEED
+       //one needs access BOTH to Friends AND WALL
+       //permitted in Authentification Controller
+       //This is a weird trick by VK
        let newsParams: [String: String] = [
             "access_token": accessToken,
             "user_id": userId,
-            "filters" : "post", 
+            //Use this ine to get ids for the groups
+            //"filters": "post",
+        
+            //Russia Today's source ID is -40316705
+            //"source_ids" : "-40316705",
+        
+            //
+            "source_ids" : "groups",
+            
+            //Number of news items
+            "count": "5",
             "v": version,
             ]
         
