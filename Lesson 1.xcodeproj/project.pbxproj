@@ -43,6 +43,7 @@
 		DB74ED5B27762F9F00B8AF47 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = DB74ED5A27762F9F00B8AF47 /* SwiftKeychainWrapper */; };
 		DB9EEB60277F384400CE6A41 /* FriendDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9EEB5F277F384400CE6A41 /* FriendDB.swift */; };
 		DB9EEB62277F575500CE6A41 /* GroupDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9EEB61277F575500CE6A41 /* GroupDB.swift */; };
+		DBAAF46427B5FC9C00E1BA08 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBAAF46327B5FC9C00E1BA08 /* PromiseKit */; };
 		DBDC53022768065400332A42 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC53012768065400332A42 /* AuthViewController.swift */; };
 		DBDC5306276817F700332A42 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC5305276817F700332A42 /* FriendsViewController.swift */; };
 		DBF11324279614F200C13C5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBF11323279614F200C13C5A /* GoogleService-Info.plist */; };
@@ -106,6 +107,7 @@
 				DBF113272796173300C13C5A /* FirebaseAuth in Frameworks */,
 				DB6DDFF42775259C0007DF7C /* SDWebImage in Frameworks */,
 				DB6DDFEB277508720007DF7C /* Alamofire in Frameworks */,
+				DBAAF46427B5FC9C00E1BA08 /* PromiseKit in Frameworks */,
 				DB74ED5B27762F9F00B8AF47 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +336,7 @@
 				DB420E3B277930D500FEC596 /* RealmSwift */,
 				DBF113262796173300C13C5A /* FirebaseAuth */,
 				DBF113282796173300C13C5A /* FirebaseDatabase */,
+				DBAAF46327B5FC9C00E1BA08 /* PromiseKit */,
 			);
 			productName = "Lesson 1";
 			productReference = DB13202C2760138F001A139B /* Lesson 1.app */;
@@ -368,6 +371,7 @@
 				DB74ED5927762F9F00B8AF47 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				DB420E3A277930D500FEC596 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				DBF113252796173300C13C5A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DBAAF46227B5FC9C00E1BA08 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = DB13202D2760138F001A139B /* Products */;
 			projectDirPath = "";
@@ -664,6 +668,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		DBAAF46227B5FC9C00E1BA08 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.16.3;
+			};
+		};
 		DBF113252796173300C13C5A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -694,6 +706,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DB74ED5927762F9F00B8AF47 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		DBAAF46327B5FC9C00E1BA08 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBAAF46227B5FC9C00E1BA08 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 		DBF113262796173300C13C5A /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
