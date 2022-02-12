@@ -10,7 +10,7 @@ import UIKit
 class NewsViewController: UIViewController {
   
     private var newsFeedAPI = NewsFeedAPI()
-    private var news: [NewsItem] = []
+    private var response: [ResponseItem] = []
         
     @IBOutlet weak var newsTableView: UITableView!
     
@@ -25,10 +25,10 @@ class NewsViewController: UIViewController {
            // tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NewsCustomTableViewCell")
             
             //Weak self to avoid retain cycle
-            newsFeedAPI.getNews{ [weak self] news in
+            newsFeedAPI.getNews{ [weak self] response in
                 guard let self = self else { return }
                 
-                self.news = news
+                self.response = response
                 //self.tableView.reloadData()
             
             }
@@ -70,17 +70,16 @@ class NewsViewController: UIViewController {
         
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
+            return response.count
         }
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-            //Вариант 2: просто отобразить саму ячейку
-            //let customCell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
+            let responseItem = response[indexPath.row]
             
             //Вариант 3 - отобразить с номером, чтобы виден был реюз
             guard let customCell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as? NewsCustomTableViewCell else {
                 return UITableViewCell() }
-            // customCell.infoLabel.text = indexPath.row.description
+            customCell.newsPreviewText.text = responseItem.text
             
             //Ниже строки для борьбы с реюзом
             // customCell.turnOffSwitch.isOn = array[indexPath.row] == 1

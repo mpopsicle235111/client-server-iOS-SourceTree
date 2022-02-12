@@ -10,7 +10,7 @@ import UIKit
  class NewsFeedTableViewController: UITableViewController {
      private var sections = [NewsSection]()
      private var newsFeedAPI = NewsFeedAPI()
-     private var news: [NewsItem] = []
+     private var news: [ResponseItem] = []
 
      override func viewDidLoad() {
          super.viewDidLoad()
@@ -26,8 +26,8 @@ import UIKit
             guard let self = self else { return }
             
             self.news = news
-            //self.tableView.reloadData()
-     }
+            self.tableView.reloadData()
+        }
 
      func loadData() {
          for item in demoNews {
@@ -53,24 +53,24 @@ import UIKit
          }
      }
     
-//    private func registerNib() {
-//             tableView.register(
-//                 SectionHeader.nib,
-//                 forHeaderFooterViewReuseIdentifier: "Header"
-//             )
-//
-//             tableView.register(
-//                 SectionFooter.nib,
-//                 forHeaderFooterViewReuseIdentifier: "Footer"
-//             )
-//
-//             let nibText = UINib(nibName: "TextViewCell", bundle: nil)
-//             tableView.register(nibText, forCellReuseIdentifier: "TextViewCell")
-//
-//             let nibPhoto = UINib(nibName: "PhotoViewCell", bundle: nil)
-//             tableView.register(nibPhoto, forCellReuseIdentifier: "PhotoViewCell")
-         }
+    func registerNib() {
+             tableView.register(
+                 SectionHeader.nib,
+                 forHeaderFooterViewReuseIdentifier: "Header"
+             )
 
+             tableView.register(
+                 SectionFooter.nib,
+                 forHeaderFooterViewReuseIdentifier: "Footer"
+             )
+
+             let nibText = UINib(nibName: "TextViewCell", bundle: nil)
+             tableView.register(nibText, forCellReuseIdentifier: "TextViewCell")
+
+             let nibPhoto = UINib(nibName: "PhotoViewCell", bundle: nil)
+             tableView.register(nibPhoto, forCellReuseIdentifier: "PhotoViewCell")
+         }
+     }
  }
 
  extension NewsFeedTableViewController {
@@ -91,7 +91,7 @@ import UIKit
          switch sectionData.type {
          case .text:
              let cell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell", for: indexPath) as! TextViewCell
-             cell.postTextLabel.text = sectionData.text
+             cell.postTextView.text = sectionData.text
              return cell
          case .photo:
              let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoViewCell", for: indexPath) as! PhotoViewCell
