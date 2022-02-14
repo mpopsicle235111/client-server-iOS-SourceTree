@@ -7,16 +7,20 @@
 
 import UIKit
 
-class TextViewCell: UITableViewCell {
-    
+class PostTextCell: UITableViewCell {
 
-    @IBOutlet weak var postTextView: UITextView!
+    
+    @IBOutlet weak var postText: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        postText.isEditable = false
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
     }
+    
 }

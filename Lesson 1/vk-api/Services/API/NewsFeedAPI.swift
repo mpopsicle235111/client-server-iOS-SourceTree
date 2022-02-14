@@ -18,131 +18,129 @@ import SwiftyJSON //This is necessary for JSON variable
 //This is VK API's request structure
 //https://api.vk.com/method/METHOD?PARAMS&access_token=TOKEN&v=V
 
-final class NewsFeedAPI {
+class NewsFeedAPI {
     
-   let baseUrl = "https://api.vk.com/method"
-   let userId = Session.shared.userId
-   let accessToken = Session.shared.token
-   let version = "5.131"
+    let baseURL = "https://api.vk.com/method"
     
-   //This is for Internet fetching
-   func getNews(completion: @escaping([ResponseItem])->()) {
-
-       let path = "/newsfeed.get"
-       let url = baseUrl + path
-   
-       //NOTE: IN ORDER TO HAVE ACCESS TO NEWSFEED
-       //one needs access BOTH to Friends AND WALL
-       //permitted in Authentification Controller
-       //This is a weird trick by VK
-       let newsParams: [String: String] = [
-            "access_token": accessToken,
-            "user_id": userId,
-            //Use this ine to get ids for the groups
-            "filters": "post, photo, wall_phoo, friend, note, audio, video",
-            "max_photos": "5",
-            //Russia Today's source ID is -40316705
-            //"source_ids" : "-40316705",
+    func newsRequest (complition: @escaping ([ModelNews] , [PhotoPost]) -> ()) {
+        let method = "/newsfeed.get"
+        let url = baseURL + method
+        let params : [String: Any] = ["user_id": Session.shared.userId,
+                                      "access_token": Session.shared.token,
+                                      "filters": "post , photo , photo_tag , wall_photo , friend , note , audio , video",
+                                      "return_banned":"1",
+                                      "max_photos": "100",
+                                      "source_ids": "friends , groups , pages, following",
+                                      "fields":"name , photo_100 , first_name , last_name",
+                                      "count" : "100",
+                                      "v": "5.131"
+        ]
         
-            //"source_ids" : "groups",
+        AF.request(url, method: .get, parameters: params).responseJSON { response in
+            guard let data = response.data else { return}
             
-            //Number of news items
-            //"count": "5",
-            "v": version,
-            ]
-        
-    
-        //We send a request to server using Alamofire
-        AF.request(url, method: .get, parameters: newsParams).responseJSON { response in
-        
-        print(response.data?.prettyJSON)
-        //Then put into quicktype.io
-        
-        guard let jsonData = response.data else { return }
-        
-        let decoder = JSONDecoder()
-        let json = JSON(jsonData)
-        let dispatchGroup = DispatchGroup()
-        
-        let vkItemsJSONArray = json["response"]["items"].arrayValue
-        let vkProfilesJSONArray = json["response"]["profiles"].arrayValue
-        let vkGroupsJSONArray = json["response"]["groups"].arrayValue
+            let decoder = JSONDecoder()
             
-        var vkItemsArray: [ResponseItem] = []
-        var vkGroupsArray: [GroupItem] = []
-        var vkProfilesArray: [Profile] = []
-         
-        //This is parallel decoding using DispatchQueue
-        //MARK: Separately decoding items
-            DispatchQueue.global().async(group: dispatchGroup){
-                for (index, items) in vkItemsJSONArray.enumerated(){
+            let dispatchGroup = DispatchGroup()
+            
+            var arrayNews: [ItemNews] = []
+            var arrayGroups: [Groups] = []
+            var arrayProfiles:[Profiles] = []
+            let newsItem = JSON(data)["response"]["items"].arrayValue
+            let groupNews = JSON(data)["response"]["groups"].arrayValue
+            let profileNews = JSON(data)["response"]["profiles"].arrayValue
+            
+            
+            DispatchQueue.global().async(group: dispatchGroup) {
+                for (index , items) in newsItem.enumerated() {
                     do {
-                        let decodedItem = try decoder.decode(ResponseItem.self, from: items.rawData())
-                        vkItemsArray.append(decodedItem)
-                    } catch {
-                        print("ResponseItem decoder error at index \(index), err: \(error)")
+                        
+                        let decodeItem = try decoder.decode(ItemNews.self, from: items.rawData())
+                        arrayNews.append(decodeItem)
+                        
+                    } catch(let errorDecode) {
+                        print("Item decoding error at index \(index), err: \(errorDecode)")
+                    }
+                }
+                
+            }
+            
+            DispatchQueue.global().async(group: dispatchGroup) {
+                for (index, groups) in groupNews.enumerated() {
+                    
+                    do {
+                        let decodeGroup = try decoder.decode(Groups.self, from: groups.rawData())
+                        arrayGroups.append(decodeGroup)
+                        
+                    } catch (let errorDecode) {
+                        print("Item decoding error at index \(index), err: \(errorDecode)")
+                    }
+                }
+                
+            }
+            
+            DispatchQueue.global().async(group: dispatchGroup) {
+                for (index, profiles) in profileNews.enumerated() {
+                    do {
+                        let profiles = try decoder.decode(Profiles.self, from: profiles.rawData())
+                        arrayProfiles.append(profiles)
+                    } catch(let errorDecode) {
+                        print("Item decoding error at index \(index), err: \(errorDecode)")
                     }
                 }
             }
-            print("===========")
-            print("This is vkItemsArray")
-            sleep(2)
-            print(vkItemsArray)
-            print("===========")
-            sleep(2)
             
-            //MARK: Separately decoding Profiles
-                DispatchQueue.global().async(group: dispatchGroup){
-                    for (index, profiles) in vkItemsJSONArray.enumerated(){
-                        do {
-                            let decodedItem = try decoder.decode(Profile.self, from: profiles.rawData())
-                            vkProfilesArray.append(decodedItem)
-                        } catch {
-                            print("Profile decoder error at index \(index), err: \(error)")
-                        }
-                    }
-                }
-                print("===========")
-                print("This is vkProfilesArray")
-                sleep(2)
-                print(vkProfilesArray)
-                print("===========")
-            
-            //MARK: Separately decoding GroupItems
-                DispatchQueue.global().async(group: dispatchGroup){
-                    for (index, groups) in vkItemsJSONArray.enumerated(){
-                        do {
-                            let decodedItem = try decoder.decode(GroupItem.self, from: groups.rawData())
-                            vkGroupsArray.append(decodedItem)
-                        } catch {
-                            print("GroupItem decoder error at index \(index), err: \(error)")
-                        }
-                    }
-                }
-                print("===========")
-                print("This is vkGroupItemsArray")
-                sleep(2)
-                print(vkGroupsArray)
-                print("===========")
-            
-                //Finalize the parallel parsing process
-                //Combine parsed items into one array
             dispatchGroup.notify(queue: DispatchQueue.main) {
-//                let response = FeedResponse(items: vkItemsArray,
-//                                            groups: vkGroupsArray,
-//                                            profiles: vkProfilesArray
-//                                            )
-//                let newsFeed = NewsFeed(response: response)
-                let response = vkItemsArray
-                completion(response)
+                
+                var resp: [ModelNews] = []
+                var photoPost: [PhotoPost] = []
+                
+                for item in arrayNews {
+                    if item.sourceID! < 0  {
+                        
+                        let group = arrayGroups.first{-($0.id!) == item.sourceID}
+                        
+                        var resultModel = ModelNews(source_ID: item.sourceID, text: item.text, photo_100: group?.photo100, name: group?.name ?? "no name", date: item.date, like: item.likes?.count, comments: item.comments?.count, reposts: item.reposts?.count, views: item.views?.count)
+                        
+                        
+                        item.attachments?.forEach {
+                            
+                            guard let post = $0.photo else {return}
+                            photoPost.append(post)
+                            print(post)
+                            
+                            resultModel.photoSizes = post.sizes
+                        }
+                        
+                        
+                        
+                        //url-photo
+                        //
+                        
+                        
+                        resp.append(resultModel)
+                        
+                    }
+                    
+                    else {
+                        
+                        let a = arrayProfiles.first{$0.id == item.sourceID}
+                        
+                        let response = ModelNews(source_ID: item.sourceID, text: item.text, photo_100: a?.photo_100!, name: a?.lastName ?? "no name1", date: item.date, like: item.likes?.count, comments: item.comments?.count, reposts: item.reposts?.count, views: item.views?.count, photoUrl: nil, photoSizes: nil)
+                        
+                        item.attachments?.forEach({
+                            guard let post = $0.photo else {return}
+                            photoPost.append(post)
+                        })
+                        
+                        resp.append(response)
+                    }
+                }
+                
+                
+                complition (resp , photoPost)
+                
             }
-            
         }
-           
-        
     }
-           
-           
-
 }
-
