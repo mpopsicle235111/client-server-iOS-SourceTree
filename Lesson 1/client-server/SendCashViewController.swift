@@ -29,7 +29,7 @@ class SendCashViewController: UIViewController, ContactsViewControllerDelegate {
         NotificationCenter.default.addObserver(forName: changeBackgroundColorNotification, object: nil, queue: OperationQueue.main) { notification in
          //We use closure here
         
-        //And retrieve the data from Notofication center
+        //And retrieve the data from Notification center
         guard let color = notification.userInfo?["color"] as? UIColor else { return }
         
         self.view.backgroundColor = color

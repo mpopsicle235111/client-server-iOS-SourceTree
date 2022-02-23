@@ -10,6 +10,11 @@ import UIKit
 class PhotoPostCell: UITableViewCell {
     
     @IBOutlet weak var collectionPhoto: UICollectionView!
+    
+
+    @IBOutlet weak var imageView2: UIImageView!
+    
+    
     //let newsAPI = NewsAPI()
     var photoArray: [PhotoPost] = []
     

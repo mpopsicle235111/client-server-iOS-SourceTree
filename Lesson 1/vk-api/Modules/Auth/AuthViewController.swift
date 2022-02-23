@@ -72,7 +72,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
             
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "revoke", value: "1"),
-            URLQueryItem(name: "v", value: "5.68")
+            URLQueryItem(name: "v", value: "5.131")
         ]
         
         let request = URLRequest(url: urlComponents.url!)
