@@ -90,15 +90,15 @@ struct Attachment: Codable {
 
 struct PhotoPost: Codable {
     
-    let sizes : [Sizes]?
+    let sizes : [Sizes]
     
 }
 
 struct Sizes: Codable {
-    let type: String?
-    let url: String?
-    let width: Int?
-    let height: Int?
+    let type: String
+    let url: String
+    let width: Int
+    let height: Int
 }
 
 /*

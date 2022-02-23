@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>223529930984-4c58u54a27a16uksgg1p0dnkt1pctvsd.apps.googleusercontent.com</string>
+	<string>340661498445-ta1q72llbjq4e0bql3gpj7c2a82dm833.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.223529930984-4c58u54a27a16uksgg1p0dnkt1pctvsd</string>
+	<string>com.googleusercontent.apps.340661498445-ta1q72llbjq4e0bql3gpj7c2a82dm833</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDAw3sEz4b8kfNeW2S5KzpTkaICHYSCHXk</string>
+	<string>AIzaSyCGls4SlcZReFncLnrHWHYh8jNF9VdXmZM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>223529930984</string>
+	<string>340661498445</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>Hometask-Client-Server-8</string>
 	<key>PROJECT_ID</key>
-	<string>hometask-8</string>
+	<string>hometask-15-2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hometask-8.appspot.com</string>
+	<string>hometask-15-2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:223529930984:ios:803cb9791dd0ad9770795d</string>
+	<string>1:340661498445:ios:e6a96c287a6afba8942204</string>
 </dict>
 </plist>

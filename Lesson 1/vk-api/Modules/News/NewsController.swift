@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 enum PostCell: Int {
-    case userinfocell
+    case newschannelheadercell
     case posttextcell
     case photopostcell
     case likecommcell
@@ -24,8 +24,11 @@ class NewsController: UIViewController {
     
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "d MMM 'в' HH:mm"
+        //This locale func translates months into Russian
+        //Removed for the sake of speed
+        //dateFormatter.locale = Locale(identifier: "ru_RU")
+        //d MMM YYY is a Russian format, changed to MMM d Western format
+        dateFormatter.dateFormat = "MMMM d', 'HH:mm"
         return dateFormatter
     }()
     
@@ -40,10 +43,13 @@ class NewsController: UIViewController {
             self.arrayNews = News
             
             self.tableNews.reloadData()
-            
         }
-        
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
 }
 
 extension NewsController: UITableViewDelegate, UITableViewDataSource {
@@ -62,39 +68,31 @@ extension NewsController: UITableViewDelegate, UITableViewDataSource {
         let postCell = PostCell(rawValue: indexPath.row)
         
         switch postCell {
-        case .userinfocell :
+        
+        case .newschannelheadercell :
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoCell", for: indexPath) as! UserInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsChannelHeaderCell", for: indexPath) as! NewsChannelHeaderCell
             
             #warning("Использовать configure и передавать модель")
             //            let postModel = arrayNews[indexPath.section]
             //            cell.configure(postModel)
             
-            cell.avatarUserPhoto.sd_setImage(with: URL(string: arrayNews[indexPath.section].photo_100!), completed: nil)
+            cell.newsChannelAvatar.sd_setImage(with: URL(string: arrayNews[indexPath.section].photo_100!), completed: nil)
             
-            cell.lableNameUser.text = arrayNews[indexPath.section].name
+            cell.newsChannelNameLabel.text = arrayNews[indexPath.section].name
             
-            cell.dataLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(arrayNews[indexPath.section].date!)))
+            cell.dateAndTimeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(arrayNews[indexPath.section].date!)))
             
             cell.selectionStyle = .none
-            
+        
             return cell
             
         case .posttextcell :
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostTextCell", for: indexPath) as! PostTextCell
+            
             cell.postText.text = arrayNews[indexPath.section].text
             cell.selectionStyle = .none
             return cell
-            
-        /*
-         return 100
-         
-         нажатие на кнопку
-         
-         в ручную посчитаь текст
-         
-         
-         */
         
         case .photopostcell :
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoPostCell", for: indexPath) as! PhotoPostCell
@@ -103,8 +101,9 @@ extension NewsController: UITableViewDelegate, UITableViewDataSource {
             
             let post = arrayNews[indexPath.section]
             
-            let photoUrl = post.photoSizes?.last?.url
-            print(photoUrl)
+            let photoUrl = post.photoSizes?[3].url
+            //let photoUrl = post.photoSizes?.last?.url
+            print(photoUrl ?? "https://proflebedev.ru/images/News1-img.jpg")
             
             //sdwebimage
             //cell.photoUrl = photoUrl
@@ -116,6 +115,8 @@ extension NewsController: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.collectionPhoto.tag = indexPath.section
+        
+            cell.imageView2?.sd_setImage(with: URL(string: photoUrl ?? "https://proflebedev.ru/images/News1-img.jpg"), placeholderImage: UIImage(named: "Heart-img"))
             
             return cell
             
@@ -139,30 +140,26 @@ extension NewsController: UITableViewDelegate, UITableViewDataSource {
         let postHeightRow = PostCell(rawValue: indexPath.row)
         
         switch postHeightRow {
-        case .userinfocell:
+        case .newschannelheadercell:
             return 60
         case .likecommcell:
             return 50
+        case .posttextcell :
+            return 60
             
             #warning("Добавить в проект для ячейки с 1 фото")
         case .photopostcell:
-            let post = arrayNews[indexPath.section]
-            
-            let photoUrl = post.photoSizes?.last?.url
-            
-            //sdwebimage
-            //cell.photoUrl = photoUrl
-            
-            if let height = post.photoSizes?.last?.height,
-               let width = post.photoSizes?.last?.width {
-                
-                let aspectRatio = height/width
-                
-                return UIScreen.main.bounds.width * CGFloat(aspectRatio)
-                
-                //Как CollectionView может отдать размер ячейки
-            }
-            return 0
+            //These lines did not allow to display post image in imageView2
+            //let post = arrayNews[indexPath.section]
+            //let photoUrl = post.photoSizes?.last?.url
+            //            //sdwebimage
+            //            //cell.photoUrl = photoUrl
+            //if let height = post.photoSizes?.last?.height,
+            //let width = post.photoSizes?.last?.width {
+            //let aspectRatio = height/width
+            //return UIScreen.main.bounds.width * CGFloat(aspectRatio)
+            //            }
+            return 180
             
         default:
             return tableNews.rowHeight
@@ -175,4 +172,18 @@ extension NewsController: UITableViewDelegate, UITableViewDataSource {
         10
     }
     
+    func tableView(_ tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+          if cell.isSelected == true{
+              cell.isSelected = true
+              cell.backgroundColor = UIColor.black
+          }else{
+              cell.backgroundColor = UIColor.green
+              cell.isSelected = true
+          }
+      }
+    
+    
+    
 }
+
+
