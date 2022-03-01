@@ -10,7 +10,9 @@ import UIKit
 class PostTextCell: UITableViewCell {
 
     
+    
     @IBOutlet weak var postText: UITextView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

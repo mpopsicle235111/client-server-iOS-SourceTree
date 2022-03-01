@@ -9,7 +9,6 @@ import UIKit
 
 class NewsChannelHeaderCell: UITableViewCell {
     
-
     @IBOutlet weak var newsChannelAvatar: UIImageView! {
         //This didSet is only used for frame-based layout
         didSet {
@@ -23,7 +22,6 @@ class NewsChannelHeaderCell: UITableViewCell {
             //}
         }
     }
-    
     @IBOutlet weak var newsChannelNameLabel: UILabel! {
         //This didSet is only used for frame-based layout
         didSet {
@@ -31,7 +29,7 @@ class NewsChannelHeaderCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var dateAndTimeLabel: UILabel!{
+    @IBOutlet weak var dateAndTimeLabel: UILabel! {
         //This didSet is only used for frame-based layout
         didSet {
             dateAndTimeLabel.translatesAutoresizingMaskIntoConstraints = false
