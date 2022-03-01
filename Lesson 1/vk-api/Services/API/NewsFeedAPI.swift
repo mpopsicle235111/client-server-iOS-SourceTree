@@ -22,15 +22,27 @@ class NewsFeedAPI {
     
     let baseURL = "https://api.vk.com/method"
     
-    func newsRequest (complition: @escaping ([ModelNews] , [PhotoPost]) -> ()) {
+    //Added for Infinite Scrolling Pattern
+    var nextFrom = ""
+    
+    //func newsRequest (completion: @escaping ([ModelNews] , [PhotoPost]) -> ()) {
+    //Modified for pull-to refresh:
+    func newsRequest (startTime: Int, startFrom: String = "", completion: @escaping ([ModelNews] , [PhotoPost] , (String)) -> ()) {
         let method = "/newsfeed.get"
         let url = baseURL + method
         let params : [String: Any] = ["user_id": Session.shared.userId,
                                       "access_token": Session.shared.token,
-                                      "filters": "post , photo , photo_tag , wall_photo , friend , note , audio , video",
+                                      "filters": "post",
+                                      //We just need news posts
+                                      //"filters": "post , photo , photo_tag , wall_photo , friend , note , audio , video",
+                                      
+                                      
+                                      //Added for Pull-to-refresh
+                                      "start_time": startFrom,
+                                      
                                       "return_banned":"1",
                                       "max_photos": "100",
-                                      "source_ids": "friends , groups , pages, following",
+                                      "source_ids": "groups , pages, following",
                                       "fields":"name , photo_100 , first_name , last_name",
                                       "count" : "100",
                                       "v": "5.131"
@@ -38,6 +50,7 @@ class NewsFeedAPI {
         
         AF.request(url, method: .get, parameters: params).responseJSON { response in
             guard let data = response.data else { return}
+            print(response.data?.prettyJSON)
             
             let decoder = JSONDecoder()
             
@@ -49,6 +62,9 @@ class NewsFeedAPI {
             let newsItem = JSON(data)["response"]["items"].arrayValue
             let groupNews = JSON(data)["response"]["groups"].arrayValue
             let profileNews = JSON(data)["response"]["profiles"].arrayValue
+            
+            //Added for pull-to-request
+            let nextFrom = JSON(data)["response"]["next_from"].stringValue
             
             
             DispatchQueue.global().async(group: dispatchGroup) {
@@ -114,10 +130,6 @@ class NewsFeedAPI {
                         
                         
                         
-                        //url-photo
-                        //
-                        
-                        
                         resp.append(resultModel)
                         
                     }
@@ -136,9 +148,11 @@ class NewsFeedAPI {
                         resp.append(response)
                     }
                 }
+                //Old version
+                //completion (resp , photoPost)
                 
-                
-                complition (resp , photoPost)
+                //Modified for Infinite Scrolling Pattern
+                completion (resp , photoPost, nextFrom)
                 
             }
         }

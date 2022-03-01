@@ -9,9 +9,9 @@ import UIKit
 
 class PhotoPostCell: UITableViewCell {
     
-    @IBOutlet weak var collectionPhoto: UICollectionView!
+ 
     
-
+    @IBOutlet weak var collectionPhoto: UICollectionViewCell!
     @IBOutlet weak var imageView2: UIImageView!
     
     
@@ -20,8 +20,8 @@ class PhotoPostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        collectionPhoto.delegate = self
-        collectionPhoto.dataSource = self
+        //collectionPhoto.delegate = self
+        //collectionPhoto.dataSource = self
         
         //        newsAPI.newsRequest { _, Photo in
         //            self.photoArray = Photo
