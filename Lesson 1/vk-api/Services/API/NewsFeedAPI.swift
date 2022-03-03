@@ -50,7 +50,8 @@ class NewsFeedAPI {
         
         AF.request(url, method: .get, parameters: params).responseJSON { response in
             guard let data = response.data else { return}
-            print(response.data?.prettyJSON)
+            //This is necessary for parsing, removed for speed
+            //print(response.data?.prettyJSON)
             
             let decoder = JSONDecoder()
             
@@ -123,7 +124,8 @@ class NewsFeedAPI {
                             
                             guard let post = $0.photo else {return}
                             photoPost.append(post)
-                            print(post)
+                            //This printout was for test purposes, removed 4 speed
+                            //print(post)
                             
                             resultModel.photoSizes = post.sizes
                         }

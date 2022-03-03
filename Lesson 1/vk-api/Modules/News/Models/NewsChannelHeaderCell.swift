@@ -37,7 +37,7 @@ class NewsChannelHeaderCell: UITableViewCell {
     }
     
     
-    //Set border insets. They only work for text labels
+    //Set border insets. 
     let insets: CGFloat = 2.0
 
     
