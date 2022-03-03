@@ -167,28 +167,29 @@ extension NewsController {
             
             let photoUrl = post.photoSizes?.last?.url
             //let photoUrl = post.photoSizes?.last?.url
-            print(photoUrl ?? "https://proflebedev.ru/images/News1-img.jpg")
+            //This printout was for test purposes, removed for speed
+            //print(photoUrl ?? "https://proflebedev.ru/images/News2-img.jpg")
             
             
             //For autoresize pattern
-            if let height = post.photoSizes?.last?.height,
-               let width = post.photoSizes?.last?.width {
+            //if let height = post.photoSizes?.last?.height,
+               //let width = post.photoSizes?.last?.width {
                 
-                let aspectRatio = CGFloat(height) / CGFloat(width)
-                print(aspectRatio)
-                print("===========")
-                sleep(1)
+               // let aspectRatio = CGFloat(height) / CGFloat(width)
+               // print("Image aspect ratio: ",aspectRatio)
+               // print("===========")
+               
                 
-              let tableWidth = tableView.bounds.width
-              let cellHeight = tableWidth * aspectRatio
+              //let tableWidth = tableView.bounds.width
+              //let cellHeight = tableWidth * aspectRatio
               //return cellHeight
                 
-            }
+            //}
             
             //Remover for
             //cell.collectionPhoto.tag = indexPath.section
         
-            cell.imageView2?.sd_setImage(with: URL(string: photoUrl ?? "https://proflebedev.ru/images/News1-img.jpg"), placeholderImage: UIImage(named: "Heart-img"))
+            cell.imageView2?.sd_setImage(with: URL(string: photoUrl ?? "https://proflebedev.ru/images/News2-img.jpg"), placeholderImage: UIImage(named: "doc")) //"doc" is a system image, used instead of a custom image for the sake of speed
             
             return cell
             
@@ -219,7 +220,7 @@ extension NewsController {
         case .likecommcell:
             return 50
         case .posttextcell :
-            return 60
+            return 67
             
             
         case .photopostcell:
@@ -228,7 +229,8 @@ extension NewsController {
             
             let photoUrl = post.photoSizes?.last?.url
             //let photoUrl = post.photoSizes?.last?.url
-            print(photoUrl ?? "https://proflebedev.ru/images/News1-img.jpg")
+            //This printout was for test purposes, removed for speed
+            //print(photoUrl ?? "https://proflebedev.ru/images/News2-img.jpg")
             
             
             //For autoresize pattern
@@ -240,9 +242,8 @@ extension NewsController {
             let width = post.photoSizes?.last?.width ?? 180
                 
             let aspectRatio = CGFloat(height) / CGFloat(width)
-                print(aspectRatio)
-                print("===========")
-                sleep(1)
+            //print("Image aspect ratio: ",aspectRatio)
+            
             let cellHeight = tableWidth * aspectRatio
               
             

@@ -430,7 +430,7 @@
             </objects>
             <point key="canvasLocation" x="1609" y="62"/>
         </scene>
-        <!--Item-->
+        <!--News (Internet)-->
         <scene sceneID="Kqy-WU-gw9">
             <objects>
                 <tableViewController id="npu-gD-ohB" customClass="NewsController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -496,9 +496,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eHO-Kw-Wiq">
-                                            <rect key="frame" x="8" y="0.0" width="359" height="91"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eHO-Kw-Wiq">
+                                            <rect key="frame" x="5" y="5" width="365" height="81"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <color key="textColor" systemColor="labelColor"/>
@@ -506,6 +505,12 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="eHO-Kw-Wiq" secondAttribute="trailing" constant="5" id="6ee-9Z-nqK"/>
+                                        <constraint firstItem="eHO-Kw-Wiq" firstAttribute="leading" secondItem="eI5-rM-cNT" secondAttribute="leading" constant="5" id="ZYW-6w-tlf"/>
+                                        <constraint firstItem="eHO-Kw-Wiq" firstAttribute="top" secondItem="eI5-rM-cNT" secondAttribute="top" constant="5" id="fAm-93-kEq"/>
+                                        <constraint firstAttribute="bottom" secondItem="eHO-Kw-Wiq" secondAttribute="bottom" constant="5" id="qDp-Gs-OVD"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="postText" destination="eHO-Kw-Wiq" id="Y36-0c-NwY"/>
@@ -546,22 +551,22 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YwK-Yf-AXw">
-                                            <rect key="frame" x="65" y="29" width="46" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YwK-Yf-AXw">
+                                            <rect key="frame" x="78" y="33" width="21" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" image="heart.fill" catalog="system"/>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeH-9s-uPn">
-                                            <rect key="frame" x="162" y="29" width="46" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeH-9s-uPn">
+                                            <rect key="frame" x="175" y="33" width="21" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" image="square.and.pencil" catalog="system"/>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db2-1N-K0X">
-                                            <rect key="frame" x="263" y="29" width="46" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db2-1N-K0X">
+                                            <rect key="frame" x="276" y="33" width="20" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" image="arrow.triangle.branch" catalog="system"/>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Xk-UC-5vB">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5Xk-UC-5vB">
                                             <rect key="frame" x="317" y="34" width="30" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -584,7 +589,7 @@
                             <outlet property="delegate" destination="npu-gD-ohB" id="IMn-lO-Oy7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="2U8-tq-e1w"/>
+                    <tabBarItem key="tabBarItem" title="News (Internet)" image="newspaper" catalog="system" id="2U8-tq-e1w"/>
                     <connections>
                         <outlet property="tableNews" destination="ziE-hp-d7V" id="d7h-Fb-lB9"/>
                     </connections>
@@ -631,9 +636,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.triangle.branch" catalog="system" width="128" height="108"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="tv.and.mediabox" catalog="system" width="128" height="89"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

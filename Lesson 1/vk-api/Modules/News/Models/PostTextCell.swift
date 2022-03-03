@@ -12,6 +12,9 @@ class PostTextCell: UITableViewCell {
     
     
     @IBOutlet weak var postText: UITextView!
+    //PostTextCell is constraint-based
+    //All other cells are layout-on-frame-based
+
     
     
     override func awakeFromNib() {
